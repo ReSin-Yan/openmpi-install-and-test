@@ -140,6 +140,7 @@ sudo make all install
 
 ## _set mpi path_
 
+~~~
 sudo vim ~/.bashrc
 
 or 
@@ -157,6 +158,42 @@ or
 
 source ~/profile
 
+~~~
 
+# Complier and Run test
 
+You can use any Compiler , like nvcc or g++
 
+~~~
+nvcc  mpi.cu -lmpi 
+~~~
+
+## _Run_
+
+Use mpirun 
+
+You can specify the machinefile or the name
+
+The machinefile is 
+~~~
+Master
+Slave1
+Slave2
+Slave3
+Slave4
+...
+~~~
+
+Run
+
+~~~
+#Name
+mpirun --host Master,Slave1,Slave2,Slave3 -mca plm_rsh_no_tree_spawn 1 a.out
+
+or
+
+#machinefile
+mpirun -machinefile 2s -mca plm_rsh_no_tree_spawn 1 gafcm
+~~~
+
+# Example by the cuda reduction with openmpi
